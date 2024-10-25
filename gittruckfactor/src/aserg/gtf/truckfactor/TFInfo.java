@@ -46,7 +46,7 @@ public class TFInfo {
 		retStr += "TF authors (Developer;Files;Percentage):\n";
 		for (Developer developer : tfDevelopers) {
 			int devFiles = developer.getAuthorshipFiles().size();
-			retStr += String.format("%s;%d;%.2f\n",developer.getName(),devFiles,(float)devFiles/totalFiles*100);
+			retStr += String.format("%s;%d;%.2f\n",developer.getEmail(),devFiles,(float)devFiles/totalFiles*100);
 		}
 		return retStr;
 	}

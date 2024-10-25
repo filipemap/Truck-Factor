@@ -15,6 +15,7 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
+import aserg.gtf.truckfactor.*;
 import org.apache.log4j.Logger;
 
 import aserg.gtf.model.LogCommitInfo;
@@ -28,10 +29,6 @@ import aserg.gtf.task.NewAliasHandler;
 import aserg.gtf.task.extractor.FileInfoExtractor;
 import aserg.gtf.task.extractor.GitLogExtractor;
 import aserg.gtf.task.extractor.LinguistExtractor;
-import aserg.gtf.truckfactor.GreedyTruckFactor;
-import aserg.gtf.truckfactor.PrunedGreedyTruckFactor;
-import aserg.gtf.truckfactor.TFInfo;
-import aserg.gtf.truckfactor.TruckFactor;
 import aserg.gtf.util.ConfigInfo;
 import aserg.gtf.util.FileInfoReader;
 import aserg.gtf.util.LineInfo;

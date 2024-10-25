@@ -8,7 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.eclipse.persistence.sessions.Session;
 
 
 public abstract class GenericDAO<T> {

@@ -1,8 +1,6 @@
 package aserg.gtf.truckfactor;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,9 +8,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import aserg.gtf.truckfactor.csv.ProjectTruckFactorCSV;
+import aserg.gtf.truckfactor.csv.GenerateCSVTemplate;
 import org.apache.log4j.Logger;
 
-import aserg.gtf.GitTruckFactor;
 import aserg.gtf.model.authorship.AuthorshipInfo;
 import aserg.gtf.model.authorship.Developer;
 import aserg.gtf.model.authorship.File;
@@ -23,7 +22,7 @@ public class PrunedGreedyTruckFactor extends TruckFactor {
 
 	private TFInfo tfInfo = new TFInfo();
 	private float minPercentage;
-	
+
 	public PrunedGreedyTruckFactor(float minPercentage) {
 		this.minPercentage = minPercentage; 
 	}
@@ -46,9 +45,16 @@ public class PrunedGreedyTruckFactor extends TruckFactor {
 		tfInfo.setCoverage(getCoverage(repFilesSize, authorsMap));
 		tfInfo.setTf(factor);
 		tfInfo.setTotalFiles(repFilesSize);
+
+		GenerateCSVTemplate firstCSV = new ProjectTruckFactorCSV(repository, tfInfo);
+		firstCSV.generateCSV();
 		
 		return pruneTF(tfInfo);
 	}
+
+//	private ? generateFirstCSV() {
+//
+//	}
 	
 	private TFInfo pruneTF(TFInfo tfInfo) {
 		Developer topDev = getTopOneDev(tfInfo.getTfDevelopers());
