@@ -86,9 +86,9 @@ public class GitTruckFactor {
 		//Persist commit info
 		//gitLogExtractor.persist(commits);
 		
-		
 		try {
 			TFInfo tf = getTFInfo(repositoryPath, repositoryName, filesInfo, modulesInfo,	fileExtractor, linguistExtractor, gitLogExtractor,aliasHandler);
+            TFInfo CSVtf = getTFInfoToCSV(repositoryPath, repositoryName, filesInfo, modulesInfo, fileExtractor, linguistExtractor, gitLogExtractor,aliasHandler);
 			System.out.println(tf);
 		} catch (Exception e) {
 			LOGGER.error("TF calculation aborted!",e);
@@ -135,8 +135,37 @@ public class GitTruckFactor {
 			
 			TruckFactor truckFactor = new PrunedGreedyTruckFactor(config.getMinPercentage());
 			return truckFactor.getTruckFactor(repository);
-			
 	}
+
+    private static TFInfo getTFInfoToCSV(String repositoryPath,
+                                         String repositoryName,
+                                         Map<String, List<LineInfo>> filesInfo,
+                                         Map<String, List<LineInfo>> modulesInfo,
+                                         FileInfoExtractor fileExtractor,
+                                         LinguistExtractor linguistExtractor,
+                                         GitLogExtractor gitLogExtractor, NewAliasHandler aliasHandler) throws Exception {
+
+        Map<String, LogCommitInfo> commits = gitLogExtractor.execute();
+        if (aliasHandler != null)
+            commits = aliasHandler.execute(repositoryName, commits);
+
+        List<NewFileInfo> files = fileExtractor.execute();
+        files = linguistExtractor.setNotLinguist(files);
+        if(filesInfo != null && filesInfo.size()>0)
+            if(filesInfo.containsKey(repositoryName))
+                applyFilterFiles(filesInfo.get(repositoryName), files);
+            else
+                LOGGER.warn("No filesInfo for " + repositoryName);
+
+        if(modulesInfo != null && modulesInfo.containsKey(repositoryName))
+            setModules(modulesInfo.get(repositoryName), files);
+
+        DOACalculator doaCalculator = new DOACalculator(repositoryPath, repositoryName, commits.values(), files);
+        Repository repository = doaCalculator.execute();
+
+        TruckFactor truckFactor = new CSVTruckFactor(config.getMinPercentage());
+        return truckFactor.getTruckFactor(repository);
+    }
 
 	public static void loadConfiguration() {
 		try {

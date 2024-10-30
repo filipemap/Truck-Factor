@@ -140,7 +140,6 @@ public class Developer {
 	public void setOrigemDevelopers(List<Developer> origemDevelopers) {
 		this.origemDevelopers = origemDevelopers;
 	}
-	
 	public List<File> getAuthorshipFiles() {
 		if (authorshipFiles == null){
 			authorshipFiles = new ArrayList<File>();
