@@ -1,7 +1,6 @@
 package aserg.gtf.truckfactor.csv;
 
 import aserg.gtf.model.authorship.Developer;
-import aserg.gtf.model.authorship.File;
 import aserg.gtf.model.authorship.Repository;
 import aserg.gtf.truckfactor.TFInfo;
 
@@ -48,4 +47,5 @@ public class ProjectContributionCSV extends GenerateCSVTemplate {
                     .append(LocalDateTime.now().format(formatter)).append("\n");
         }
     }
+
 }

@@ -22,7 +22,6 @@ import aserg.gtf.model.LogCommitInfo;
 import aserg.gtf.model.NewFileInfo;
 import aserg.gtf.model.authorship.AuthorshipInfo;
 import aserg.gtf.model.authorship.Developer;
-import aserg.gtf.model.authorship.File;
 import aserg.gtf.model.authorship.Repository;
 import aserg.gtf.task.DOACalculator;
 import aserg.gtf.task.NewAliasHandler;

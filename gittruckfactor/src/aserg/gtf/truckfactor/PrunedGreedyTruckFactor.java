@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import aserg.gtf.truckfactor.csv.ProjectContributionCSV;
 import aserg.gtf.truckfactor.csv.ProjectTruckFactorCSV;
 import aserg.gtf.truckfactor.csv.GenerateCSVTemplate;
 import org.apache.log4j.Logger;
@@ -48,6 +47,7 @@ public class PrunedGreedyTruckFactor extends TruckFactor {
 		tfInfo.setTotalFiles(repFilesSize);
 
         TFInfo temp = pruneTF(tfInfo);
+
         GenerateCSVTemplate firstCSV = new ProjectTruckFactorCSV(repository, tfInfo);
         firstCSV.generateCSV();
 

@@ -1,12 +1,7 @@
 package aserg.gtf.truckfactor.csv;
 
-import aserg.gtf.model.authorship.Repository;
-import aserg.gtf.truckfactor.TFInfo;
-
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public abstract class GenerateCSVTemplate {
 
