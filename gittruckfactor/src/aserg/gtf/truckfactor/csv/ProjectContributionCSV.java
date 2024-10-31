@@ -43,7 +43,7 @@ public class ProjectContributionCSV extends GenerateCSVTemplate {
             float contribution = (float) gitUserFilesSize / (float) tfInfo.getTotalFiles() * 100;
 
             writer.append(repository.getFullName()).append(",")
-                    .append(gitUser).append(",")
+                    .append("\"").append(gitUser).append("\"").append(",")
                     .append(String.format(Locale.US, "%.2f", contribution)).append(",")
                     .append(LocalDateTime.now().format(formatter)).append("\n");
         }

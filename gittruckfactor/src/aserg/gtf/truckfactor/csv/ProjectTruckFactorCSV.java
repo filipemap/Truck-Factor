@@ -41,7 +41,7 @@ public class ProjectTruckFactorCSV extends GenerateCSVTemplate {
             float contribution = (float) devFiles / tfInfo.getTotalFiles() * 100;
 
             writer.append(repository.getFullName()).append(",")
-                    .append(String.valueOf(tfInfo.getTf())).append(",")
+                    .append(String.format("%d", tfInfo.getTf())).append(",")
                     .append(LocalDateTime.now().format(formatter)).append(",")
                     .append(developer.getName()).append(",")
                     .append(String.format(Locale.US, "%.2f", contribution)).append("\n");

@@ -47,10 +47,11 @@ public class PrunedGreedyTruckFactor extends TruckFactor {
 		tfInfo.setTf(factor);
 		tfInfo.setTotalFiles(repFilesSize);
 
+        TFInfo temp = pruneTF(tfInfo);
         GenerateCSVTemplate firstCSV = new ProjectTruckFactorCSV(repository, tfInfo);
         firstCSV.generateCSV();
-		
-		return pruneTF(tfInfo);
+
+		return temp;
 	}
 	
 	private TFInfo pruneTF(TFInfo tfInfo) {
