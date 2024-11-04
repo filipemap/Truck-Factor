@@ -35,7 +35,7 @@ public class ProjectFileContributionCSV extends GenerateCSVTemplate {
 
     @Override
     protected void writeContent(FileWriter writer) throws IOException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
 
         for (File file : repository.getFiles()) {
             List<AuthorshipInfo> authorships = file.getAuthorshipInfos();

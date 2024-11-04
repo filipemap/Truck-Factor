@@ -33,7 +33,7 @@ public class ProjectContributionCSV extends GenerateCSVTemplate {
 
     @Override
     protected void writeContent(FileWriter writer) throws IOException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
         List<Developer> developers = tfInfo.getTfDevelopers();
 
         for (Developer developer : developers) {
