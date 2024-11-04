@@ -4,11 +4,9 @@ import aserg.gtf.model.authorship.AuthorshipInfo;
 import aserg.gtf.model.authorship.Developer;
 import aserg.gtf.model.authorship.File;
 import aserg.gtf.model.authorship.Repository;
-import aserg.gtf.truckfactor.TFInfo;
-import aserg.gtf.truckfactor.TruckFactor;
 import aserg.gtf.truckfactor.csv.GenerateCSVTemplate;
 import aserg.gtf.truckfactor.csv.ProjectContributionCSV;
-import aserg.gtf.truckfactor.csv.ProjectTruckFactorCSV;
+import aserg.gtf.truckfactor.csv.ProjectFileContributionCSV;
 import org.apache.log4j.Logger;
 
 import java.util.*;
@@ -30,6 +28,7 @@ public class CSVTruckFactor extends TruckFactor {
         int repFilesSize = repository.getFiles().size();
         int factor = 0;
         float coverage = 1;
+
         while (authorsMap.size() > 0) {
             removeTopAuthor(repFilesSize, authorsMap);
             factor++;
@@ -38,9 +37,11 @@ public class CSVTruckFactor extends TruckFactor {
         tfInfo.setTf(factor);
         tfInfo.setTotalFiles(repFilesSize);
 
-        // firstCSV is on "PrunedGreedyTruckFactor" class.
+//      firstCSV is on "PrunedGreedyTruckFactor" class.
         GenerateCSVTemplate secondCSV = new ProjectContributionCSV(repository, tfInfo);
         secondCSV.generateCSV();
+        GenerateCSVTemplate thirdCSV = new ProjectFileContributionCSV(repository, tfInfo);
+        thirdCSV.generateCSV();
 
         return pruneTF(tfInfo);
     }
